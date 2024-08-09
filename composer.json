@@ -1,0 +1,16 @@
+{
+    "name": "istarie/rodovale",
+    "autoload": {
+        "psr-4": {
+            "Rodovale\\": "src/",
+            "Rodovale\\Database\\": "database"
+        }
+    },
+    "authors": [
+        {
+            "name": "Patrick Ferreira Carvalho",
+            "email": "patrickferreiraC911@gmail.com"
+        }
+    ],
+    "require": {}
+}

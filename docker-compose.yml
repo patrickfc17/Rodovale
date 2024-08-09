@@ -1,0 +1,23 @@
+services:
+  server:
+    build: .
+    restart: always
+    volumes:
+      - rodovale:/app
+    develop:
+      watch:
+        - action: sync
+          path: ./app
+          target: ./app
+          ignore:
+            - vendor/
+        - action: rebuild
+          path: composer.json
+  web:
+    image: node
+    restart: always
+    ports:
+      - 3030:3000
+
+volumes:
+  rodovale:
