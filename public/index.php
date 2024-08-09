@@ -7,15 +7,16 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $routes = require_once __DIR__ . '/../src/routes.php';
 
 try {
-    foreach ($routes as $route => $action) {
-        if ($_SERVER['REQUEST_URI'] !== $route) continue;
+    $action = $routes[$_SERVER['REQUEST_URI']];
 
-        [$controller, $method] = explode('@', $action);
+    if (!$action)
+        throw new Exception('Essa rota não foi encontrada no servidor');
 
-        $controller = new $controller(ViagensDAO::getInstance());
+    [$controller, $method] = explode('@', $action);
 
-        $controller->{$method}((object) $_REQUEST);
-    }
+    $controller = new $controller(ViagensDAO::getInstance());
+
+    $controller->{$method}((object) $_REQUEST);
 } catch (Exception) {
     require_once __DIR__ . '/pages/error.php';
 }
