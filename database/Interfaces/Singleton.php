@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Interfaces;
+namespace Rodovale\Database\Interfaces;
 
 use PDO;
 

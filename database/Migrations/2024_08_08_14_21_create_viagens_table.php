@@ -11,9 +11,9 @@ return new class implements Migration
     {
         $connection->prepare("
             CREATE TABLE viagens (
-                id INT PRIMARY KEY,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 codigo BIGINT UNIQUE,
-                horario_partida DATETIME,
+                partida DATETIME,
                 numero_passageiros INT,
                 onibus VARCHAR,
                 origem VARCHAR,

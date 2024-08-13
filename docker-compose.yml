@@ -1,23 +1,21 @@
 services:
-  server:
-    build: .
-    restart: always
-    volumes:
-      - rodovale:/app
-    develop:
-      watch:
-        - action: sync
-          path: ./app
-          target: ./app
-          ignore:
-            - vendor/
-        - action: rebuild
-          path: composer.json
-  web:
-    image: node
-    restart: always
-    ports:
-      - 3030:3000
+    server:
+        build: .
+        ports:
+            - 9000:8000
+        restart: always
+        command: npm run tailwind:watch
+        volumes:
+            - rodovale:/app
+        develop:
+            watch:
+                - action: sync
+                  path: ./app
+                  target: ./app
+                  ignore:
+                      - vendor/
+                - action: rebuild
+                  path: .
 
 volumes:
-  rodovale:
+    rodovale:

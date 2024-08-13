@@ -2,10 +2,10 @@
 
 namespace Rodovale\Database\Config;
 
-use Database\Interfaces\Singleton;
-use Override;
 use PDO;
+use Override;
 use PDOException;
+use Rodovale\Database\Interfaces\Singleton;
 use Rodovale\Exceptions\UnstableServerException;
 
 final class ConnectionFactory implements Singleton
@@ -19,7 +19,7 @@ final class ConnectionFactory implements Singleton
     {
         if (!self::$instance) {
             try {
-                self::$instance = new PDO('sqlite:database.sqlite');
+                self::$instance = new PDO('sqlite:' . __DIR__ . '/../../database.sqlite');
 
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException) {
